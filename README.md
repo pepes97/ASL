@@ -42,7 +42,7 @@ https://user-images.githubusercontent.com/56698309/133144003-bb8d5f9e-00d3-4f08-
 
 ## Slides
 
-<a href="https://docs.google.com/presentation/d/e/2PACX-1vRG6HQlMQ6BwrWWcnURHSyP_m0RtJJI3Ur5MYK46NToF9yDpjFdTnVL2KtfM-0x4jsCKBdxACpZiIcu/pub?start=false&loop=false&delayms=60000"> 
+<a href="https://docs.google.com/presentation/d/e/2PACX-1vRG6HQlMQ6BwrWWcnURHSyP_m0RtJJI3Ur5MYK46NToF9yDpjFdTnVL2KtfM-0x4jsCKBdxACpZiIcu/pub?start=false&loop=false&delayms=60000" target="_blank"> 
   <img src="https://user-images.githubusercontent.com/56698309/133143736-0ae49c74-02b9-459a-a359-69f3b0e09e71.png">
 </a>
 
