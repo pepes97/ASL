@@ -35,3 +35,14 @@ for testing:
 ```
 python main.py --only-test True
 ```
+
+## Demo
+
+
+## Credits
+
+* [Marco Pennese](https://github.com/MarcoPenne)
+
+* [Sveva Pepe](https://github.com/pepes97)
+
+* [Simone Tedeschi](https://github.com/sted97)
