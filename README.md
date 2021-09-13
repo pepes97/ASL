@@ -1,5 +1,7 @@
 # Classification of American Sign Language
 
+Our goal was to design a classifier that, given an image, is able to understand and recognize the American sign language (ASL) and output the right character represented by the sign.
+
 ## Requirements
 
 ```
