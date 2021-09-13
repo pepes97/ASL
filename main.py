@@ -52,7 +52,7 @@ def main(data_aug, target_size, batch_size, name_model, learning_rate, fine_tune
         os.makedirs(model_path)
     logs_path = "models/tensorboard_logs/"+nome_prova
     if not os.path.exists(logs_path):
-        os.mkdir(logs_path)
+        os.makedirs(logs_path)
 
     my_callbacks = [
         tf.keras.callbacks.EarlyStopping(monitor="val_accuracy", patience=8, restore_best_weights=True),
