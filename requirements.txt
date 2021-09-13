@@ -3,4 +3,4 @@ tensorflow
 matplotlib
 numpy
 Pillow
-twdm
+tqdm
