@@ -23,15 +23,18 @@ class SMSDataset():
     self.target_size = target_size
     self.data_aug = data_aug
 
+    print(f"\033[1mCropping images... \033[0m")
     self.crop()
+    print(f"\033[1mCreate dataset... \033[0m")
     self.train_generator, self.valid_generator, self.test_generator = self.create_dataset()
 
   def crop(self):
       """
         Cropping images to remove blue border
       """
+      
       dirs = os.listdir(self.train_file)
-      for directory in tqdm(dirs):
+      for directory in tqdm(dirs, desc="Cropping"):
           fullpath = os.path.join(self.train_file,directory)
           for f in os.listdir(fullpath):
             image_file = os.path.join(fullpath, f )
