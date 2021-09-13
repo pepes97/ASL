@@ -38,6 +38,13 @@ python main.py --only-test True
 
 ## Demo
 
+https://user-images.githubusercontent.com/56698309/133144003-bb8d5f9e-00d3-4f08-a194-4a7f541f16c5.mp4
+
+## Slides
+
+<a href="https://docs.google.com/presentation/d/e/2PACX-1vRG6HQlMQ6BwrWWcnURHSyP_m0RtJJI3Ur5MYK46NToF9yDpjFdTnVL2KtfM-0x4jsCKBdxACpZiIcu/pub?start=false&loop=false&delayms=60000"> 
+  <img src="https://user-images.githubusercontent.com/56698309/133143736-0ae49c74-02b9-459a-a359-69f3b0e09e71.png">
+</a>
 
 ## Credits
 
