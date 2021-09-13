@@ -11,7 +11,8 @@ from lib.model_pretrained import ASL_Pretrained
 from datetime import datetime
 from lib.utils import show_batch, show_predicted_batch
 
-def main(data_aug, target_size, batch_size, name_model, learning_rate, fine_tune):
+
+def main(data_aug, target_size, batch_size, name_model, learning_rate, fine_tune, epochs, only_test):
 
     device_name = tf.test.gpu_device_name()
     if device_name != '/device:GPU:0':
@@ -45,33 +46,35 @@ def main(data_aug, target_size, batch_size, name_model, learning_rate, fine_tune
     else:
         asl_model = ASL_Pretrained(name_model, False, input_shape, params).model
 
-    nome_prova = f"{params.model_name}_{input_shape}_lr{params.lr}_drop{params.drop_rate}_resbloks{params.n_res_net_blocks}_paths{params.n_paths}_{data_aug}(all)_{datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}"
-    
+    nome_prova = f"{params.model_name}_input{input_shape}_lr{params.lr}_drop{params.drop_rate}_resbloks{params.n_res_net_blocks}_paths{params.n_paths}_{data_aug}(all)"  
     model_path = "/models/checkpoints/"+nome_prova+"/"
-    if not os.path.exists(model_path):
-        os.makedirs(model_path)
-    logs_path = "models/tensorboard_logs/"+nome_prova
-    if not os.path.exists(logs_path):
-        os.makedirs(logs_path)
+    if not only_test:
+        
+        if not os.path.exists(model_path):
+            os.makedirs(model_path)
+        logs_path = "models/tensorboard_logs/"+nome_prova
+        if not os.path.exists(logs_path):
+            os.makedirs(logs_path)
 
-    my_callbacks = [
-        tf.keras.callbacks.EarlyStopping(monitor="val_accuracy", patience=8, restore_best_weights=True),
-        tf.keras.callbacks.ModelCheckpoint(filepath=model_path+'model.h5', save_best_only=True),
-        tf.keras.callbacks.TensorBoard(log_dir=logs_path),
-    ]
+        my_callbacks = [
+            tf.keras.callbacks.EarlyStopping(monitor="val_accuracy", patience=8, restore_best_weights=True),
+            tf.keras.callbacks.ModelCheckpoint(filepath=model_path+'model.h5', save_best_only=True),
+            tf.keras.callbacks.TensorBoard(log_dir=logs_path),
+        ]
 
-    print(f"\033[1mTraining...\033[0m")
-    history = asl_model.fit(train_generator, epochs=200, verbose=1, validation_data=valid_generator, callbacks=my_callbacks)
+        print(f"\033[1mTraining...\033[0m")
+        history = asl_model.fit(train_generator, epochs=epochs, verbose=1, validation_data=valid_generator, callbacks=my_callbacks)
 
-    if fine_tune:
-        print(f"\033[1mFine Tuning...\033[0m")
-        asl_model = ASL_Pretrained(name_model, True, input_shape, params).model
-        history = asl_model.fit(train_generator, epochs=200, verbose=1, validation_data=valid_generator, callbacks=my_callbacks)
+        if fine_tune:
+            print(f"\033[1mFine Tuning...\033[0m")
+            params = HParams(input_shape, num_classes, learning_rate*10^-1, name_model)
+            asl_model = ASL_Pretrained(name_model, True, input_shape, params).model
+            history = asl_model.fit(train_generator, epochs=epochs, verbose=1, validation_data=valid_generator, callbacks=my_callbacks)
 
 
     asl_model = keras.models.load_model(model_path+'model.h5')
     asl_model.compile(loss=params.loss_fn, optimizer=params.optimizer, metrics=params.metrics)
-    
+        
     print(f"\033[1mTesting...\033[0m")
     loss, acc = asl_model.evaluate(test_generator, verbose=1)
     print(f"\033[1mLOSS: {loss}\033[0m")
@@ -89,15 +92,20 @@ if __name__ == "__main__":
     parser.add_argument('--target-size', type=tuple, default=(100,100), help='target size for images')
     parser.add_argument('--batch-size', type=int, default=64, help='batch size')   
     parser.add_argument('--name-model', type=str, default="VGG19", help='name of the model')
-    parser.add_argument('--learning-rate', type=float, default=0.0001, help='learning rate')
+    parser.add_argument('--lr', type=float, default=0.0001, help='learning rate')
     parser.add_argument('--fine-tune', type=bool, default=False, help='Fine Tuning')
+    parser.add_argument('--epochs', type=int, default=50, help='Epochs')
+    parser.add_argument('--only-test', type=bool, default=False, help='Only Test')
+
 
     args = parser.parse_args()
     data_aug = args.data_aug
     target_size = args.target_size
     batch_size = args.batch_size
     name_model = args.name_model
-    learning_rate = args.learning_rate
+    learning_rate = args.lr
     fine_tune = args.fine_tune
+    epochs = args.epochs
+    only_test = args.only_test
 
-    main(data_aug, target_size, batch_size, name_model, learning_rate, fine_tune)
+    main(data_aug, target_size, batch_size, name_model, learning_rate, fine_tune, epochs, only_test)
