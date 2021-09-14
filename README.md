@@ -12,7 +12,7 @@ pip install -r requirements.txt
 ## Download dataset
 
 ```
-%cd dataset
+cd dataset
 python dataset_download.py
 ```
 
