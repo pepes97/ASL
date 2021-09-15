@@ -12,8 +12,8 @@ pip install -r requirements.txt
 ## Download dataset
 
 ```
-cd dataset
-python dataset_download.py
+$ cd dataset
+$ python dataset_download.py
 ```
 
 ## Run
