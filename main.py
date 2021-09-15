@@ -47,7 +47,7 @@ def main(data_aug, target_size, batch_size, name_model, learning_rate, fine_tune
         asl_model = ASL_Pretrained(name_model, False, input_shape, params).model
 
     nome_prova = f"{params.model_name}_input{input_shape}_lr{params.lr}_drop{params.drop_rate}_resbloks{params.n_res_net_blocks}_paths{params.n_paths}_{data_aug}(all)"  
-    model_path = "/models/checkpoints/"+nome_prova+"/"
+    model_path = "models/checkpoints/"+nome_prova+"/"
     if not only_test:
         
         if not os.path.exists(model_path):
