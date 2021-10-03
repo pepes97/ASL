@@ -44,6 +44,11 @@ for testing:
 python main.py --only-test True
 ```
 
+## Best Model
+
+![portfolio-1](https://user-images.githubusercontent.com/56698309/135748471-6c650a96-f0d9-49cb-a4dd-42d48f4a6012.png)
+
+
 ## Demo
 
 https://user-images.githubusercontent.com/56698309/133144003-bb8d5f9e-00d3-4f08-a194-4a7f541f16c5.mp4
