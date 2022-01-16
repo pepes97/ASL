@@ -15,8 +15,10 @@ Our goal was to design a classifier that, given an image, is able to understand 
 
 ### Development Setup
 
-<img src="https://user-images.githubusercontent.com/56698309/149671605-81b97714-41e6-44af-9cc5-f765297e712d.png" height="400px">
 
+<p align="center">
+  <img width="600" height="350" src="https://user-images.githubusercontent.com/56698309/149671605-81b97714-41e6-44af-9cc5-f765297e712d.png">
+</p>
 
 ### Requirements
 
