@@ -6,8 +6,8 @@ Our goal was to design a classifier that, given an image, is able to understand 
 
 * [Development Setup](#Development-Setup)
 * [Requirements](#Requirements)
-* [Download dataset](#Download-Dataset)
-* [Run](#Run)
+  * [Download dataset](#Download-Dataset)
+  * [Run](#Run)
 * [Best Model](#Best-Model)
 * [Demo](#Demo)
 * [Slides](#Slides)
